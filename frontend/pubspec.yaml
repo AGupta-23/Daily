@@ -1,0 +1,63 @@
+name: daily
+description: AI-powered voice-first productivity app for people with ADHD
+publish_to: 'none'
+version: 1.0.0+1
+
+environment:
+  sdk: '>=3.2.0 <4.0.0'
+
+dependencies:
+  flutter:
+    sdk: flutter
+  table_calendar: ^3.0.9
+
+  # State Management
+  flutter_riverpod: ^2.5.1
+  riverpod_annotation: ^2.3.5
+
+  # HTTP & API
+  http: ^1.2.0
+  dio: ^5.4.0  # Better for file uploads and interceptors
+
+  # JSON Serialization
+  json_annotation: ^4.8.1
+  freezed_annotation: ^2.4.1
+
+  # Audio Recording
+  # record: ^5.0.4
+  record: ^6.2.0
+  record_linux: ^1.3.0
+  path_provider: ^2.1.2
+  permission_handler: ^11.2.0
+
+  # UI & Icons
+  cupertino_icons: ^1.0.6
+  flutter_svg: ^2.0.9
+  intl: ^0.19.0  # Date formatting
+
+  # Local Storage (for caching)
+  shared_preferences: ^2.2.2
+
+  # Utilities
+  equatable: ^2.0.5
+  logger: ^2.0.2+1
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  
+  flutter_lints: ^3.0.1
+  
+  # Code Generation
+  build_runner: ^2.4.8
+  json_serializable: ^6.7.1
+  freezed: ^2.4.6
+  riverpod_generator: ^2.3.11
+
+flutter:
+  uses-material-design: true
+
+  # Add your assets here
+  # assets:
+  #   - assets/images/
+  #   - assets/icons/
