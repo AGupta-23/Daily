@@ -5,6 +5,8 @@ import '../models/api_response.dart';
 import '../models/task.dart';
 import '../models/event.dart';
 import '../models/intent.dart';
+import '../models/reminder.dart';
+import 'package:flutter/foundation.dart';
 
 /// Main API service for Daily app
 class ApiService {
@@ -90,7 +92,7 @@ class ApiService {
         tasks.add(task);
       } catch (e) {
         // Log error but continue with other tasks
-        print('Failed to create task: ${request.content}. Error: $e');
+        debugPrint('Failed to create task: ${request.content}. Error: $e');
         rethrow; // Or handle gracefully based on requirements
       }
     }
@@ -238,6 +240,29 @@ class ApiService {
     // For now, we'll update the entire task
     return updateTask(task.id, request);
   }
+
+
+  // ========== Phase 3: Reminders ==========
+
+Future<List<Reminder>> getUpcomingReminders() async {
+  final response = await _client.get('/api/reminders/upcoming');
+  final list = response.data['reminders'] as List<dynamic>;
+  return list.map((j) => Reminder.fromJson(j as Map<String, dynamic>)).toList();
+}
+
+Future<Reminder> createReminder(ReminderRequest request) async {
+  final response = await _client.post('/api/reminders', data: request.toJson());
+  return Reminder.fromJson(response.data as Map<String, dynamic>);
+}
+
+Future<void> snoozeReminder(String id, int minutes) async {
+  await _client.put('/api/reminders/$id/snooze',
+      data: {'snooze_duration_minutes': minutes});
+}
+
+Future<void> dismissReminder(String id) async {
+  await _client.put('/api/reminders/$id/dismiss');
+}
 
   /// Close the API client
   void dispose() {

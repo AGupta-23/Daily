@@ -222,8 +222,8 @@ class _VoiceInputScreenState extends ConsumerState<VoiceInputScreen> {
                   decoration: BoxDecoration(
                     shape: BoxShape.circle,
                     color: _isRecording 
-                        ? Colors.red.withOpacity(0.2)
-                        : Colors.deepPurple.withOpacity(0.2),
+                        ? Colors.red.withValues(alpha :0.2)
+                        : Colors.deepPurple.withValues(alpha: 0.2),
                     border: Border.all(
                       color: _isRecording ? Colors.red : Colors.deepPurple,
                       width: 4,
